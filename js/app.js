@@ -4,17 +4,17 @@
     function obtenerPrecio(){
     let precio = parseInt(prompt('💸💳 Simule su crédito 💳💸 \n Ingrese el precio de su producto: '))
     if(isNaN(precio)){
-        alert('Ingresa un precio válido')
-        obtenerPrecio()
-    } else {
-    return parseInt(precio)
+        precio = parseInt(prompt('Ingresa un precio válido'))
+    } 
+    return precio
+
 }
-}
+
 
 // Llamada a la función precios
 
 const precio = obtenerPrecio()
-console.log(precio)
+// console.log(precio)
 
    
 
@@ -22,20 +22,17 @@ console.log(precio)
 function cantidadCuotas(){
     let cuotas = parseInt(prompt('Ingrese la cantidad de cuotas: \n 3 Cuotas (5% Interés) \n 6 Cuotas (10% Interés) \n 9 Cuotas (15% Interés) \n 12 Cuotas (20% Interés)'))
     if(isNaN(cuotas)){
-        alert('Debe ingresar un número')
-        cantidadCuotas()
-    } else /* else if (cuotas !== 3 || cuotas !== 6 || cuotas !== 9 || cuotas !== 12){
-        alert('Debe ingresar un número de cuotas válido (3 6 9 12)')
-        cantidadCuotas()
-    } else */
-    return parseInt(cuotas)
-    
+        cuotas = parseInt(prompt('Debe ingresar un número valido de cuotas (3 6 9 12)'))
+    } else if (cuotas !== 3 || cuotas !== 6 || cuotas !== 9 || cuotas !== 12){
+        cuotas = parseInt(prompt('Debe ingresar un número de cuotas válido (3 6 9 12)'))
+    } 
+    return cuotas
 } 
 
 // Llamada a la funcion cuotas    
 
 const cuotas = cantidadCuotas()
-console.log(cuotas)
+// console.log(cuotas)
 
 
 // Funcion para determinar Interés       
@@ -55,17 +52,20 @@ function calcularInteres(nCuotas){
             interes = 120
             break;    
         default:
-            alert('error')
+           // alert('Ingrese numero valido')
+
             break;
     }
         return interes
         
         
     }
-    // Llamada a la funcion interes
+
+
+// Llamada a la funcion interes
     
  const intereses = calcularInteres(cuotas)
- console.log(intereses);
+ // console.log(intereses);
 
  
  // Funcion que calcula el interes final
