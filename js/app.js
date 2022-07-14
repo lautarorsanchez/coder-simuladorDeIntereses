@@ -1,39 +1,46 @@
+// Funcion para determinar presupuesto
 
-
-// Función que solicita precio al usuario
-    function obtenerPrecio(){
-    let precio = parseInt(prompt('💸💳 Simule su crédito 💳💸 \n Ingrese el precio de su producto: '))
-    if(isNaN(precio)){
-        precio = parseInt(prompt('Ingresa un precio válido'))
-    } 
-    return precio
-
+function obtenerPresupuesto(){
+    let presupuesto = parseInt(prompt('💸💳 Simule su crédito 💳💸 \n Ingresa tu presupuesto de crédito: '))
+    while(isNaN(presupuesto)){
+        presupuesto = parseInt(prompt('Ingresa un presupuesto válido'))
+    }
+    return presupuesto
 }
 
+// Llamada a la función presupuesto
+
+const presupuesto = obtenerPresupuesto()
+
+// Función que solicita precio al usuario
+function obtenerPrecio(){
+    let precio = parseInt(prompt('Ingrese el precio de su producto: '))
+    while(isNaN(precio)){
+        precio = parseInt(prompt('Ingresa un precio válido'))
+    }
+
+    while(presupuesto < precio){
+        precio = parseInt(prompt('Tu presupuesto es insuficiente para esta compra, elige otro monto: '))
+    }
+    return precio
+}
 
 // Llamada a la función precios
 
 const precio = obtenerPrecio()
-// console.log(precio)
 
-   
-
-// Funcion para obtener cantidad de cuotas
+// Funcion para obtener cantidad de cuotas 
 function cantidadCuotas(){
     let cuotas = parseInt(prompt('Ingrese la cantidad de cuotas: \n 3 Cuotas (5% Interés) \n 6 Cuotas (10% Interés) \n 9 Cuotas (15% Interés) \n 12 Cuotas (20% Interés)'))
-    if(isNaN(cuotas)){
-        cuotas = parseInt(prompt('Debe ingresar un número valido de cuotas (3 6 9 12)'))
-    } else if (cuotas !== 3 || cuotas !== 6 || cuotas !== 9 || cuotas !== 12){
-        cuotas = parseInt(prompt('Debe ingresar un número de cuotas válido (3 6 9 12)'))
-    } 
-    return cuotas
+    while (!(cuotas == 3 || cuotas == 6 || cuotas == 9 || cuotas == 12)) {
+        cuotas = parseInt(prompt("Debe ingresar un número de cuotas válido (3, 6, 9, o 12)"))
+          }
+    return parseInt(cuotas)
 } 
 
 // Llamada a la funcion cuotas    
 
 const cuotas = cantidadCuotas()
-// console.log(cuotas)
-
 
 // Funcion para determinar Interés       
 function calcularInteres(nCuotas){
@@ -53,34 +60,35 @@ function calcularInteres(nCuotas){
             break;    
         default:
            // alert('Ingrese numero valido')
-
             break;
     }
-        return interes
-        
-        
-    }
+        return interes     
+}
 
 
 // Llamada a la funcion interes
     
  const intereses = calcularInteres(cuotas)
- // console.log(intereses);
-
  
  // Funcion que calcula el interes final
  
- function matematica(cuotas, precio, interes){
-     alert(`Calculadora de crédito para ${cuotas} cuotas:
+function matematica(cuotas, precio, interes, presupuesto){
+    while (presupuesto < (precio / 100) * interes){
+        alert('Con los intereses, tu presupuesto no alcanza para este producto 😢')
+        break
+    } 
+    
+    alert(`Calculadora de crédito para ${cuotas} cuotas:
+     Presupuesto: ${presupuesto}
      Precio inicial: ${precio}
      Precio total con intereses: ${(precio / 100) * interes}
      Precio de las cuotas: ${((precio / 100) * interes) / cuotas}
      Mejor efectivo 😉`)
-    }
+}
     
 // Llamada a la funcion que calcula el interes
     
-matematica(cuotas, precio, intereses)
+matematica(cuotas, precio, intereses, presupuesto)
     
 
 
